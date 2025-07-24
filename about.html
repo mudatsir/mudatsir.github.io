@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>PRIBADI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #00ffff;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    .calculator {
+      background: rgba(212, 7, 7, 0.6);
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 20px #00ffff;
+      width: 320px;
+    }
+
+    #display {
+      background: black;
+      color: #00ffff;
+      font-size: 28px;
+      text-align: right;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #00ffff;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      background: #111;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      padding: 20px;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: #00ffff;
+      color: black;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    .equal {
+      background: #00ffff;
+      color: black;
+      font-weight: bold;
+    }
+
+    .clear {
+      background: #ff4d4d;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="display">0</div>
+    <div class="buttons">
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('/')">÷</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('*')">×</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('-')">−</button>
+
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button onclick="append('+')">+</button>
+      <button class="equal" onclick="calculate()">=</button>
+
+      <button class="clear" onclick="clearDisplay()">C</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+
+    function append(val) {
+      if (display.textContent === "0" || display.textContent === "Error") {
+        display.textContent = val;
+      } else {
+        display.textContent += val;
+      }
+    }
+
+    function calculate() {
+      try {
+        display.textContent = eval(display.textContent);
+      } catch {
+        display.textContent = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      display.textContent = "0";
+    }
+  </script>
+</body>
+</html>
